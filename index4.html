@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Apreciación — Esfuerzo y Dependencia (Zelda)</title>
+  <style>
+    :root{
+      --bg:#08121a;
+      --accent:#b39f2b;
+      --muted:#9fb4c6;
+      --card:#0d2940;
+      --glass: rgba(255,255,255,0.04);
+      --radius:16px;
+      --shadow: 0 10px 30px rgba(0,0,0,0.5);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 400px at 10% 10%, rgba(179,159,43,0.06), transparent),
+                  linear-gradient(180deg, rgba(4,22,34,1), rgba(7,18,28,1));
+      color:#e6f6ff;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:32px;
+      -webkit-font-smoothing:antialiased;
+    }
+
+    .wrap{
+      width:min(960px,96%);
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns: 1fr 340px;
+      gap:20px;
+      align-items:start;
+      border: 1px solid rgba(255,255,255,0.03);
+    }
+
+    .main{
+      padding:18px;
+      background:linear-gradient(180deg, rgba(13,41,64,0.25), rgba(8,20,32,0.15));
+      border-radius:12px;
+      min-height:260px;
+    }
+    h1{
+      margin:0 0 8px 0;
+      font-size:28px;
+      letter-spacing:0.6px;
+    }
+    p.lead{
+      margin:0 0 18px 0;
+      color:var(--muted);
+      line-height:1.5;
+      font-size:15px;
+    }
+    .tribute{
+      background:var(--glass);
+      border-radius:10px;
+      padding:12px;
+      font-size:14px;
+      color:#dff3ff;
+      line-height:1.6;
+    }
+
+    .side{
+      padding:18px;
+      background: linear-gradient(180deg, rgba(2,10,18,0.3), rgba(2,6,12,0.2));
+      border-radius:12px;
+      display:flex;
+      flex-direction:column;
+      gap:14px;
+      align-items:center;
+    }
+
+    .triforce{
+      width:120px;height:110px; position:relative; margin-top:6px;
+    }
+    .tri{
+      width:0;height:0;border-left:40px solid transparent;border-right:40px solid transparent;border-bottom:55px solid var(--accent);
+      position:absolute; left:20px; top:0; filter:drop-shadow(0 6px 6px rgba(0,0,0,0.35));
+    }
+    .tri.left{ transform:translateX(-50px); }
+    .tri.right{ transform:translateX(50px); }
+    .tri.bottom{ top:46px; left:20px; }
+
+    .playBtn{
+      appearance:none;border:0;padding:12px 18px;border-radius:12px;background:linear-gradient(180deg,#17455f,#0d2f43);
+      color:white;font-weight:600;font-size:16px;cursor:pointer;display:inline-flex;align-items:center;gap:10px;box-shadow:0 6px 18px rgba(2,10,20,0.6);
+    }
+    .playBtn:active{transform:translateY(1px)}
+
+    .meta{text-align:center;font-size:13px;color:var(--muted);}
+    .gratitude{margin-top:14px;padding:10px;border-radius:10px;background:linear-gradient(90deg, rgba(179,159,43,0.06), rgba(255,255,255,0.01));border:1px solid rgba(179,159,43,0.06);text-align:center;font-weight:600;color:var(--accent);}
+    .small{font-size:12px;color:var(--muted);}
+
+    @media (max-width:880px){.wrap{grid-template-columns:1fr;}.side{order:-1}}
+
+    /* Sección final */
+    .final{
+      margin-top:50px;
+      text-align:center;
+      opacity:0;
+      transform:translateY(20px);
+      transition:opacity 1s ease, transform 1s ease;
+    }
+    .final.visible{opacity:1; transform:translateY(0);}
+    .final p{
+      font-size:15px;
+      line-height:1.6;
+      color:#e6f6ff;
+      margin-bottom:12px;
+      white-space:pre-line;
+    }
+    .final img{
+      width:140px;
+      height:auto;
+      border:3px solid var(--accent);
+      border-radius:12px;
+      box-shadow:0 6px 20px rgba(179,159,43,0.3);
+      background:rgba(255,255,255,0.04);
+      padding:6px;
+    }
+
+    /* small helper for status */
+    .status{font-size:13px;color:var(--muted);margin-top:6px}
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="main">
+      <h1>Gracias por tu esfuerzo</h1>
+      <p class="lead">Un reconocimiento sincero a tu gran esfuerzo y valor independiente — incluso cuando el mundo no siempre lo nota, tu constancia deja huella.</p>
+
+      <div class="tribute">
+        <strong>Tu esfuerzo importa.</strong>
+        <p style="margin:8px 0 0 0">Cada paso, aunque silencioso, impulsa algo más grande. Esta página honra esa energía invisible, como una melodía de Ocarina que guía el alma.</p>
+      </div>
+
+      <div style="margin-top:14px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+        <div class="gratitude">Apreciación profunda: Tu valor trasciende</div>
+        <div class="small">Inspirado en la serenidad de Ocarina of Time</div>
+      </div>
+
+      <div class="final" id="final">
+        <p id="finalText">“En el esfuerzo compartido se teje una dependencia noble:
+no la que limita, sino la que sostiene,
+la que da sentido al cansancio y propósito al camino.”</p>
+        <img id="photo" src="yo y shiro.png" alt="Recuerdo de esfuerzo y dependencia" />
+      </div>
+    </div>
+
+    <aside class="side">
+      <div style="text-align:center;">
+        <div style="font-weight:700; letter-spacing:0.8px;">Tema: Ocarina of Time</div>
+        <div class="meta">Sonido ambiental disponible (repetir/pausar)</div>
+      </div>
+      <div class="triforce" aria-hidden="true">
+        <div class="tri left"></div>
+        <div class="tri right"></div>
+        <div class="tri bottom"></div>
+      </div>
+
+      <button class="playBtn" id="toggle" aria-pressed="false" aria-label="Reproducir Ocarina">
+        <svg id="icon-play" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 3v18l15-9L5 3z" fill="currentColor" />
+        </svg>
+        <svg id="icon-pause" width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true" style="display:none">
+          <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z" fill="currentColor" />
+        </svg>
+        <span id="btnText">Reproducir</span>
+      </button>
+
+      <div class="meta">Coloca el archivo <code>ocarina.mp3</code> en la misma carpeta.</div>
+
+      <div style="width:100%;display:flex;gap:8px;justify-content:center;align-items:center;">
+        <label class="small" for="volume">Volumen</label>
+        <input id="volume" type="range" min="0" max="1" step="0.01" value="0.35" style="width:140px">
+      </div>
+
+      <div class="status" id="status">Estado: detenido</div>
+      <div style="font-size:12px;color:var(--muted);text-align:center;">Diseño inspirado en Zelda — Uso personal y reflexivo.</div>
+    </aside>
+  </div>
+
+  <audio id="ocarina" src="Zelda Ocarina Of Time - Zelda's Lullaby.mp3" loop preload="auto"></audio>
+
+  <script>
+    // JavaScript mejorado: reproducir/pausar, volumen, atajos de teclado, y mostrar la sección final cuando la música suena.
+    (function(){
+      const audio = document.getElementById('ocarina');
+      const btn = document.getElementById('toggle');
+      const iconPlay = document.getElementById('icon-play');
+      const iconPause = document.getElementById('icon-pause');
+      const btnText = document.getElementById('btnText');
+      const vol = document.getElementById('volume');
+      const status = document.getElementById('status');
+      const final = document.getElementById('final');
+
+      // Initialize
+      audio.volume = parseFloat(vol.value);
+
+      // Helper to update UI
+      function setPlaying(playing){
+        if(playing){
+          iconPlay.style.display='none'; iconPause.style.display='inline-block';
+          btn.setAttribute('aria-pressed','true');
+          btnText.textContent = 'Pausar';
+          status.textContent = 'Estado: reproduciendo';
+          // reveals final section smoothly when play starts
+          final.classList.add('visible');
+        }else{
+          iconPlay.style.display='inline-block'; iconPause.style.display='none';
+          btn.setAttribute('aria-pressed','false');
+          btnText.textContent = 'Reproducir';
+          status.textContent = 'Estado: detenido';
+        }
+      }
+
+      // Play/pause with graceful handling of autoplay restrictions
+      async function togglePlay(){
+        if(audio.paused){
+          try{
+            await audio.play();
+            setPlaying(true);
+          }catch(err){
+            // playback failed (browser policy) — show message briefly
+            status.textContent = 'No se pudo iniciar la reproducción: interactúa con la página.';
+            setTimeout(()=>{status.textContent = audio.paused ? 'Estado: detenido' : 'Estado: reproduciendo';},2500);
+          }
+        }else{
+          audio.pause();
+          setPlaying(false);
+        }
+      }
+
+      btn.addEventListener('click', togglePlay);
+
+      vol.addEventListener('input', ()=>{ audio.volume = parseFloat(vol.value); });
+
+      // Keyboard shortcut: espacio -> play/pause (cuando no se está escribiendo en inputs)
+      window.addEventListener('keydown', (e)=>{
+        if(e.code === 'Space' && document.activeElement.tagName !== 'INPUT' && document.activeElement.tagName !== 'TEXTAREA'){
+          e.preventDefault();
+          togglePlay();
+        }
+      });
+
+      // If audio starts because user clicked elsewhere (autoplay catch), ensure UI sync
+      audio.addEventListener('play', ()=> setPlaying(true));
+      audio.addEventListener('pause', ()=> setPlaying(false));
+      audio.addEventListener('ended', ()=> setPlaying(false));
+
+      // If user never interacts, we still reveal the final section after a delay (gentle reveal)
+      setTimeout(()=>{
+        if(!final.classList.contains('visible')) final.classList.add('visible');
+      }, 3000);
+
+      // Accessibility: allow Enter/Space on the button
+      btn.addEventListener('keyup', (e)=>{ if(e.key === 'Enter') togglePlay(); });
+
+    })();
+  </script>
+</body>
+</html>
